@@ -6,3 +6,6 @@ build
 
 # Ignore Problems statment files
 *.md
+
+# Ignore test-docs folder
+test-docs
