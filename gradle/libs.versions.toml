@@ -5,7 +5,7 @@
 guava = "33.4.5-jre"
 junit = "4.13.2"
 junit-v4-v13-v2-v13 = "3.2.2.0"
-scala-library = "2.13.18"
+scala-library = "2.12.18"
 scala-xml-v2-v13 = "1.2.0"
 scalatest-v2-v13 = "3.2.19"
 spark = "3.5.8"
@@ -17,5 +17,5 @@ junit-v4-v13-v2-v13 = { module = "org.scalatestplus:junit-4-13_2.13", version.re
 scala-library = { module = "org.scala-lang:scala-library", version.ref = "scala-library" }
 scala-xml-v2-v13 = { module = "org.scala-lang.modules:scala-xml_2.13", version.ref = "scala-xml-v2-v13" }
 scalatest-v2-v13 = { module = "org.scalatest:scalatest_2.13", version.ref = "scalatest-v2-v13" }
-spark-core = { group = "org.apache.spark", name = "spark-core_2.13", version.ref = "spark" }
-spark-sql = { group = "org.apache.spark", name = "spark-sql_2.13", version.ref = "spark" }
+spark-core = { group = "org.apache.spark", name = "spark-core_2.12", version.ref = "spark" }
+spark-sql = { group = "org.apache.spark", name = "spark-sql_2.12", version.ref = "spark" }

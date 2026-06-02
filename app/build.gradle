@@ -21,29 +21,17 @@ repositories {
 }
 
 dependencies {
-    // Use Scala 2.13 in our library project
+    // Use Scala 2.12.18 in our library project
     implementation libs.scala.library
 
     implementation libs.spark.core
     implementation libs.spark.sql
-
-    // This dependency is used by the application.
-    implementation libs.guava
-
-    // Use Scalatest for testing our library
-    testImplementation libs.junit
-    testImplementation libs.scalatest.v2.v13
-    testImplementation libs.junit.v4.v13.v2.v13
-
-    // Need scala-xml at test runtime
-    testRuntimeOnly libs.scala.xml.v2.v13
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
-    }
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 def jvmOpenArgs = [
@@ -57,11 +45,11 @@ def jvmOpenArgs = [
     "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED",
     "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED",
     "--add-opens=java.base/sun.nio.cs=ALL-UNNAMED",
-    "--add-opens=java.base/security=ALL-UNNAMED",
     "--add-opens=java.base/sun.security.action=ALL-UNNAMED"
 ]
 
 task runPrintStatement(type: JavaExec) {
+    dependsOn compileScala // <--- ADD THIS
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.PrintStatement'
     jvmArgs = jvmOpenArgs
@@ -70,6 +58,7 @@ task runPrintStatement(type: JavaExec) {
 }
 
 task runEx1(type: JavaExec) {
+    dependsOn compileScala // <--- ADD THIS
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scala_native_data_modelling.Ex1'
     jvmArgs = jvmOpenArgs
@@ -78,6 +67,7 @@ task runEx1(type: JavaExec) {
 }
 
 task runEx2(type: JavaExec) {
+    dependsOn compileScala // <--- ADD THIS
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scala_native_data_modelling.Ex2'
     jvmArgs = jvmOpenArgs
@@ -86,6 +76,7 @@ task runEx2(type: JavaExec) {
 }
 
 task runEx3(type: JavaExec) {
+    dependsOn compileScala // <--- ADD THIS
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scala_native_data_modelling.Ex3'
     jvmArgs = jvmOpenArgs
@@ -99,5 +90,9 @@ application {
 
     // BLOCK TO SILENCE THE JVM WARNINGS:
     applicationDefaultJvmArgs = jvmOpenArgs
+
+    if (project.hasProperty("main")) {
+        mainClass = project.getProperty("main")
+    }
 }
 
