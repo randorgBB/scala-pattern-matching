@@ -69,6 +69,30 @@ task runPrintStatement(type: JavaExec) {
     standardOutput = System.out
 }
 
+task runEx1(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scala_native_data_modelling.Ex1'
+    jvmArgs = jvmOpenArgs
+    errorOutput = System.err
+    standardOutput = System.out
+}
+
+task runEx2(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scala_native_data_modelling.Ex2'
+    jvmArgs = jvmOpenArgs
+    errorOutput = System.err
+    standardOutput = System.out
+}
+
+task runEx3(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scala_native_data_modelling.Ex3'
+    jvmArgs = jvmOpenArgs
+    errorOutput = System.err
+    standardOutput = System.out
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'org.example.App'
