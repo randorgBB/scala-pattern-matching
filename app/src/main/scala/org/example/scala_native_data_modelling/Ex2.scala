@@ -62,7 +62,7 @@ object Ex2 extends App {
           "accounts"
       )
       .as[CustomerAccountSnap]
-  customerDataDS.show(15)
+  //customerDataDS.show(15)
 
   // =======================================================
   // 2. Read raw address data
@@ -71,7 +71,7 @@ object Ex2 extends App {
       .option("header", "true")
       .csv("src/main/resources/data/csv/address_data.csv")
       .as[AddressRawData]
-  addressRawDS.show(15)
+  //addressRawDS.show(15)
 
   // =======================================================
   // 3. create new map -> Address DS to have another col with split addresses
@@ -92,7 +92,7 @@ object Ex2 extends App {
               country = addressSeq.lift(3)
           )
   }
-  addressMapDS.show(15)
+  //addressMapDS.show(15)
 
   // =======================================================
   // 4. join Customer-Account Snap with Address Map
@@ -115,7 +115,7 @@ object Ex2 extends App {
   // =======================================================
   // 5. write customer - address map to parquet file
   // =======================================================
-  customerAddressDocumnentDS.write.mode("overwrite").parquet("src/main/resources/data/parquet/AccountCustomerOutput.parquet")
+  customerAddressDocumnentDS.write.mode("overwrite").parquet("src/main/resources/data/parquet/CustomerAddressDocument.parquet")
 
 
   // print final of process
